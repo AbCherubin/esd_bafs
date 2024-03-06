@@ -1,0 +1,226 @@
+:root {
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 400;
+
+  color: #f6f6f6;
+  background-color: #22252E;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+.container {
+  margin: 0;
+  padding-top: 3vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+
+}
+
+
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: 0.75s;
+}
+
+.bg-setting {
+  display: flex;
+
+  height: 54px;
+  z-index: 3;
+  border: 1px solid transparent;
+  box-shadow: 0 0px 5px 1px rgba(255, 255, 255, 0.2);
+  background: #2A2F39;
+  width: 95%;
+  border-radius: 24px;
+  margin: 30px auto;
+  text-align: center;
+  align-items: center;
+
+}
+
+.logo.tauri:hover {
+  filter: drop-shadow(0 0 2em #24c8db);
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+
+a:hover {
+  color: #24c8db;
+}
+
+h1 {
+  text-align: center;
+}
+
+input,
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  color: #ffffff;
+  background-color: #0f0f0f98;
+  transition: border-color 0.25s;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+button {
+  cursor: pointer;
+}
+
+button:hover {
+  border-color: #396cd8;
+}
+
+button:active {
+  border-color: #396cd8;
+  background-color: #0f0f0f69;
+}
+
+input,
+button {
+  outline: none;
+}
+
+#greet-input {
+  margin-right: 5px;
+}
+
+
+
+.dropdown {
+  min-width: 100px;
+  height: 24px;
+  border-color: #ffffff;
+  background-color: #0f0f0f00;
+  color: #ffffff;
+  margin: 0 8px;
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  /* background-color: #0f0f0f98; */
+  /* Adjust the value as needed */
+}
+
+.icon {
+  width: 50%;
+  /* Make the image fill the circular container */
+  height: 50%;
+}
+
+.icon-container {
+  margin-right: 8px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  filter: drop-shadow(0 0px 4px #19acf0b4);
+  background-color: #262b36;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* padding: 10px; */
+  /* background-color: #2a2f39; */
+  color: #ffffff8a;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  font-size: 12px;
+}
+
+.left-footer-text {
+  text-align: left;
+  margin-left: 5px;
+}
+
+.right-footer-text {
+  margin-right: 15px;
+  text-align: right;
+
+}
+
+#port-state {
+  font-size: 15px;
+  color: #ffffff32;
+  margin-right: 60px;
+  text-align: center;
+}
+
+
+
+#esd-logo {
+  margin-bottom: 0px;
+  margin-top: 100px;
+}
+
+#baudrate-list {
+  margin-left: 5px;
+}
+
+#payload-data {
+  color: #ffffff;
+  font-size: 50px;
+
+  /* font-weight: bold; */
+  padding: 20px 40px;
+  margin-bottom: 40px;
+  margin-top: 40px;
+  /* margin-left: auto;
+  margin-right: auto; */
+}
+
+#message-container {
+  font-size: 20px;
+  color: #E5E500;
+  position: relative;
+}
+
+#mtn-icon {
+  left: 135px;
+  top: 18px;
+  width: 30px;
+  position: absolute;
+}
+
+.bg-setting .serialport-container {
+  margin-left: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.bg-setting .baudrate-contaniner {
+  margin-left: auto;
+  margin-right: 50px;
+  display: flex;
+  align-items: center;
+}

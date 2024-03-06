@@ -1,0 +1,28 @@
+[package]
+name = "esd_bafs"
+version = "1.0.1"
+description = "A ESD App"
+authors = ["you"]
+license = ""
+repository = ""
+edition = "2021"
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[build-dependencies]
+tauri-build = { version = "1.5", features = [] }
+
+[dependencies]
+tauri = { version = "1.5", features = [ "notification-all", "system-tray", "shell-open"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+serialport = "4.2.2"
+regex = "1"
+tokio = { version = "1", features = ["full"] }
+notify-rust = "4.10.0"
+tauri-plugin-single-instance = { git = "https://github.com/tauri-apps/plugins-workspace", branch = "v1" }
+tauri-plugin-autostart = { git = "https://github.com/tauri-apps/plugins-workspace", branch = "v1" }
+
+[features]
+# this feature is used for production builds or when `devPath` points to the filesystem
+# DO NOT REMOVE!!
+custom-protocol = ["tauri/custom-protocol"]

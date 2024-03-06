@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="styles.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ESD App</title>
+    <script src="./animejs/lib/anime.min.js"></script>
+    <script type="module" src="/main.js" defer></script>
+    <style>
+      .logo.esd:hover {
+        filter: drop-shadow(0 0 1em #24c8db);
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Serial Port Section -->
+    <div class="bg-setting">
+      <div class="serialport-container">
+        <div class="icon-container">
+          <img class="icon" src="./assets/usb.svg" alt="Icon" class="icon" />
+        </div>
+        <label for="port-list">Serial Port:</label>
+        <select class="dropdown" id="port-list"></select>
+      </div>
+      <div class="baudrate-contaniner">
+        <div class="icon-container">
+          <img
+            class="icon"
+            src="./assets/baudrate.svg"
+            alt="Icon"
+            class="icon"
+          />
+        </div>
+        <label for="baudrate-list">Baud Rate:</label>
+        <label id="baudrate-list">9600</label>
+      </div>
+    </div>
+    <div class="animation-wrapper">
+      <div class="feature-animation">
+        <div class="easing-visualizer">
+          <div class="wrapper dots-wrapper"></div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <img
+        id="esd-logo"
+        src="/assets/esd_logo.svg"
+        class="logo esd"
+        alt="ESD logo"
+      />
+
+      <label id="payload-data"></label>
+
+      <div id="message-container"></div>
+    </div>
+    <!-- Footer Section -->
+    <footer>
+      <div class="left-footer-text">Aerothai CS.ES.</div>
+      <label id="port-state"></label>
+      <div class="right-footer-text">v1.0.1</div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   version="1.1"
+   id="svg1"
+   width="207.8857"
+   height="210.9436"
+   viewBox="0 0 207.8857 210.9436"
+   sodipodi:docname="usb.png"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     showguides="false" />
+  <g
+     inkscape:groupmode="layer"
+     inkscape:label="Image"
+     id="g1"
+     transform="translate(-196.49199,-153.51144)">
+    <path
+       style="fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:11.7004;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1;paint-order:fill markers stroke"
+       d="M 202.34219,329.62181 V 159.36164 h 39.0013 l -3.6e-4,170.26017 h 39.00166 V 159.36164 h 79.18141 v 170.26017 h 39.0013 V 159.36164"
+       id="path10"
+       sodipodi:nodetypes="cccccccccc"
+       inkscape:export-filename="path10.svg"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:29px;font-family:Ebrima;-inkscape-font-specification:Ebrima;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;letter-spacing:7.8px;fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1;paint-order:fill markers stroke"
+       x="214.18018"
+       y="363.60104"
+       id="text12"><tspan
+         sodipodi:role="line"
+         id="tspan12"
+         x="214.18018"
+         y="363.60104"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:29px;font-family:Gadugi;-inkscape-font-specification:Gadugi;letter-spacing:7.8px;fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:1;stroke-dasharray:none;stroke-opacity:1">1 0 1 1 0</tspan></text>
+  </g>
+</svg>

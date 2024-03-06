@@ -1,0 +1,16 @@
+{
+  "name": "esd_bafs",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "tauri": "tauri",
+    "tauri_b_32": "tauri build -t i686-pc-windows-msvc"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^1.5.6"
+  },
+  "dependencies": {
+    "@tauri-apps/plugin-autostart": "^2.0.0-alpha.3"
+  }
+}

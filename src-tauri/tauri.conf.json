@@ -1,0 +1,61 @@
+{
+  "build": {
+    "beforeDevCommand": "",
+    "beforeBuildCommand": "",
+    "devPath": "../src",
+    "distDir": "../src",
+    "withGlobalTauri": true
+  },
+  "package": {
+    "productName": "esd_bafs",
+    "version": "1.0.1"
+  },
+  "tauri": {
+    "allowlist": {
+      "all": false,
+      "notification": {
+        "all": true
+      },
+      "shell": {
+        "all": false,
+        "open": true
+      }
+    },
+    "bundle": {
+      "windows": {
+        "webviewInstallMode": {
+          "type": "offlineInstaller"
+        }
+      },
+      "active": true,
+      "targets": "all",
+      "identifier": "ESD",
+      "icon": [
+        "icons/32x32.png",
+        "icons/128x128.png",
+        "icons/128x128@2x.png",
+        "icons/icon.icns",
+        "icons/icon.ico"
+      ]
+    },
+    "security": {
+      "csp": null
+    },
+    "windows": [
+      {
+        "fullscreen": false,
+        "resizable": false,
+        "title": "Emergency Shut Down",
+        "width": 800,
+        "height": 600,
+        "theme": "Dark",
+        "center": true,
+        "maximizable": false
+      }
+    ],
+    "systemTray": {
+      "iconPath": "icons/icon.png",
+      "iconAsTemplate": true
+    }
+  }
+}
