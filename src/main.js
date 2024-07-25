@@ -43,7 +43,7 @@ listen("alertData", (event) => {
         audio.play();
         logo_animation.play();
         payloadDataContainer.innerHTML = `${event.payload.data}`;
-
+        document.getElementById("deactivateButton").style.display = "block";
         payloadDataContainer.style.backgroundColor = "red";
         messageContainer.innerHTML = `
     <p><img id="mtn-icon" src="./assets/mtn.svg" />Emergency Shut Down (ESD) has been initiated.</p><p><span style="color: white;"><u>Press Spacebar</u></span> to deactivate.</p>`;
@@ -58,7 +58,7 @@ listen("alertData", (event) => {
     logo_animation.pause();
     audio.pause();
     audio.currentTime = 0;
-
+    document.getElementById("deactivateButton").style.display = "none";
     alert_status = false;
     payloadDataContainer.innerHTML = "";
     payloadDataContainer.style.backgroundColor = "";
@@ -208,6 +208,11 @@ window.addEventListener("DOMContentLoaded", () => {
       if (port_status == "Connected" && alert_status) {
         sendCommandSerialPort();
       }
+    }
+  });
+  document.getElementById("deactivateButton").addEventListener("click", () => {
+    if (port_status == "Connected" && alert_status) {
+      sendCommandSerialPort();
     }
   });
 });

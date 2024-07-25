@@ -1,6 +1,6 @@
 [package]
 name = "esd_bafs"
-version = "1.0.1"
+version = "1.0.2"
 description = "A ESD App"
 authors = ["you"]
 license = ""
