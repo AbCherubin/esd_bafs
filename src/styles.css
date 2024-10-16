@@ -131,6 +131,12 @@ button {
   height: 50%;
 }
 
+.icon-reboot {
+  width: 30px;
+  height: 30px;
+  margin-left: -35%;
+}
+
 .icon-container {
   margin-right: 8px;
   width: 40px;
@@ -144,6 +150,7 @@ button {
   align-items: center;
 
 }
+
 
 footer {
   display: flex;
@@ -193,6 +200,10 @@ footer {
 
 #baudrate-list {
   margin-left: 5px;
+}
+
+#reboot-list {
+  margin-top: 10px;
 }
 
 #payload-data {
@@ -262,4 +273,20 @@ footer {
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
   /* Add box shadow on hover */
   border: none;
+}
+
+#rebootButton {
+  font-weight: small;
+  font-size: 15px;
+  /* left: 80%;
+  top: 85%; */
+  margin-right: 50px;
+  display: flex;
+  align-items: center;
+  /* position: absolute; */
+  width: 90px;
+  height: 35px;
+  filter: drop-shadow(0 0px 4px #19acf0b4);
+  background-color: #262b36;
+  /* border: 4px solid #ffea00; */
 }

@@ -12,6 +12,7 @@ let portStateContainer;
 let esd_logo;
 let logo_animation;
 let port_status;
+let radio_status;
 let alert_status;
 let current_portname = "";
 let permissionGranted = await isPermissionGranted();
@@ -80,6 +81,9 @@ listen("portState", (event) => {
   if (port_status == "Connected") {
     portStateContainer.innerHTML = `Connected to Serial Port`;
     if (alert_status) return;
+    if (!radio_status) {
+      sendSetTextMsg();
+    }
     esd_logo.style.filter =
       "drop-shadow(0 0 2em #ffffff) invert(42%) sepia(93%) saturate(1352%) hue-rotate(87deg) brightness(119%) contrast(119%)";
   } else if (port_status == "Port Busy") {
@@ -91,6 +95,22 @@ listen("portState", (event) => {
     if (alert_status) return;
     esd_logo.style.filter = "";
   }
+});
+listen("SetTextMsg", (event) => {
+  radio_status = event.payload;
+  if (radio_status == "OK") {
+    console.log("radio_status OK");
+  } else if (!radio_status) {
+    setTimeout(() => {
+      if (!radio_status) {
+        console.log("sendSetTextMsg");
+        sendSetTextMsg();
+      }
+    }, 1000);
+  }
+});
+listen("sendReboot", (event) => {
+  console.log("Reboot");
 });
 
 async function listSerialPorts() {
@@ -162,6 +182,17 @@ async function sendCommandSerialPort() {
   const webview = new WebviewWindow("window");
   webview.emit("sendCommand");
 }
+
+async function sendSetTextMsg() {
+  const webview = new WebviewWindow("window");
+  webview.emit("sendSetTextMsg");
+}
+
+async function sendReboot() {
+  const webview = new WebviewWindow("window");
+  webview.emit("sendReboot");
+}
+
 window.addEventListener("DOMContentLoaded", () => {
   closeSerialPort();
 
@@ -213,6 +244,11 @@ window.addEventListener("DOMContentLoaded", () => {
   document.getElementById("deactivateButton").addEventListener("click", () => {
     if (port_status == "Connected" && alert_status) {
       sendCommandSerialPort();
+    }
+  });
+  document.getElementById("rebootButton").addEventListener("click", () => {
+    if (port_status == "Connected") {
+      sendReboot();
     }
   });
 });

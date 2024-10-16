@@ -45,7 +45,13 @@ async fn start_serial_communication(port_name: String, baud_rate: u32, window: W
         .timeout(Duration::from_millis(10))
         .open();
     let name_regex = Regex::new(r#"\*#ESD_(?P<name>[^#]+)#"#).unwrap();
-    let target_msg = format!("{}{}", "*#ESD_OFF#", "\r\n");
+    let ok_regex = Regex::new(r"^\s*OK\s*$").unwrap();
+    let off_regex = Regex::new(r"\*#ESD\.OFF#").unwrap();
+    let restart_regex = Regex::new(r"\+?(PowerOn:\d+)").unwrap();
+
+    let esd_off_msg = format!("{}{}", "*#ESD_OFF#", "\r\n");
+    let set_text_msg = format!("{}{}", "AT+CMGF=8", "\r\n");
+    let reboot_msg = format!("{}{}", "ATR", "\r\n");
     match port {
         Ok(mut port) => {
             let mut serial_buf: Vec<u8> = vec![0; 1000];
@@ -54,6 +60,8 @@ async fn start_serial_communication(port_name: String, baud_rate: u32, window: W
             let (tx, rx) = mpsc::channel::<Signal>();
             let tx1 = tx.clone();
             let tx2 = tx.clone();
+            let tx3 = tx.clone();
+            let tx4 = tx.clone();
 
             let id_stop = window.listen("stopSerial", move |_| {
                 println!("Received stop signal ");
@@ -87,7 +95,36 @@ async fn start_serial_communication(port_name: String, baud_rate: u32, window: W
                     }
                 }
             });
-
+            let id_set_text: tauri::EventHandler = window.listen("sendSetTextMsg", move |_| {
+                println!("Send SetTextMsg signal ");
+                match tx3.send(Signal {
+                    reason: "sendSetTextMsg".to_string(),
+                }) {
+                    Ok(()) => {
+                        println!("Sent Cmmand signal to serial communication thread.");
+                    }
+                    Err(e) => {
+                        // Failed to send message
+                        eprintln!("Error sending stop signal: {:?}", e);
+                        // Handle the error accordingly
+                    }
+                }
+            });
+            let id_reboot: tauri::EventHandler = window.listen("sendReboot", move |_| {
+                println!("Send Reboot signal ");
+                match tx4.send(Signal {
+                    reason: "sendReboot".to_string(),
+                }) {
+                    Ok(()) => {
+                        println!("Sent Cmmand signal to serial communication thread.");
+                    }
+                    Err(e) => {
+                        // Failed to send message
+                        eprintln!("Error sending stop signal: {:?}", e);
+                        // Handle the error accordingly
+                    }
+                }
+            });
             window.emit_all("portState", "Connected").unwrap();
 
             thread::spawn(move || {
@@ -102,7 +139,7 @@ async fn start_serial_communication(port_name: String, baud_rate: u32, window: W
 
                                 break;
                             } else if reason == "sendCommand" {
-                                match port.write(target_msg.as_bytes()) {
+                                match port.write(esd_off_msg.as_bytes()) {
                                     Ok(_) => {
                                         window
                                             .emit_all(
@@ -112,6 +149,26 @@ async fn start_serial_communication(port_name: String, baud_rate: u32, window: W
                                                 },
                                             )
                                             .unwrap();
+                                    }
+                                    Err(e) => {
+                                        eprintln!("Write failed: {:?}", e);
+                                        // Handle the write failure accordingly
+                                    }
+                                }
+                            } else if reason == "sendSetTextMsg" {
+                                match port.write(set_text_msg.as_bytes()) {
+                                    Ok(_) => {
+                                        window.emit_all("SetTextMsg", ()).unwrap();
+                                    }
+                                    Err(e) => {
+                                        eprintln!("Write failed: {:?}", e);
+                                        // Handle the write failure accordingly
+                                    }
+                                }
+                            } else if reason == "sendReboot" {
+                                match port.write(reboot_msg.as_bytes()) {
+                                    Ok(_) => {
+                                        window.emit_all("Reboot", ()).unwrap();
                                     }
                                     Err(e) => {
                                         eprintln!("Write failed: {:?}", e);
@@ -144,6 +201,35 @@ async fn start_serial_communication(port_name: String, baud_rate: u32, window: W
                                         )
                                         .unwrap();
                                 }
+                            } else if ok_regex.is_match(&data) {
+                                // If the message exactly matches "OK"
+                                println!("Received OK message");
+
+                                // window.unminimize().unwrap();
+                                // window.show().unwrap();
+                                // window.set_focus().unwrap();
+
+                                window.emit_all("SetTextMsg", "OK").unwrap(); // Emit event with no payload
+                            } else if off_regex.is_match(&data) {
+                                // If the message exactly matches "OK"
+                                println!("Received ESD OFF message");
+
+                                // window.unminimize().unwrap();
+                                // window.show().unwrap();
+                                // window.set_focus().unwrap();
+
+                                window
+                                    .emit_all(
+                                        "alertData",
+                                        SerialDataPayload {
+                                            data: "".to_string(),
+                                        },
+                                    )
+                                    .unwrap();
+                            } else if restart_regex.is_match(&data) {
+                                // If the message exactly matches "OK"
+                                println!("Received Restart message");
+                                window.emit_all("SetTextMsg", ()).unwrap();
                             } else {
                                 println!("Received data does not match the expected format");
                             }
@@ -157,6 +243,8 @@ async fn start_serial_communication(port_name: String, baud_rate: u32, window: W
                 }
                 window.unlisten(id_send_command);
                 window.unlisten(id_stop);
+                window.unlisten(id_set_text);
+                window.unlisten(id_reboot);
                 window.emit_all("portState", "Disconnected").unwrap();
                 println!("Exit {}", &port_name);
             });
